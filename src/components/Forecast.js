@@ -7,6 +7,7 @@ const Forecast = () => {
   const [data, setData] = useState(null);
   const [city, setCity] = useState('');
   const [unit, setUnit] = useState('imperial');
+  const [error, setError] = useState(null);
 
   const options = {
     method: 'GET',
@@ -20,11 +21,21 @@ const Forecast = () => {
     e.preventDefault();
 
     fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${city}`, options)
-      .then(response => response.json())
+      .then(response => {
+        if(!response.ok) {
+          throw new Error(
+            `Error fetching data - Response status: ${response.status} `
+          )
+        }
+        return response.json();
+      })
       .then(weatherData => {
         setData(weatherData);
       })
-      .catch(err => console.log(err.message));
+      .catch(err => {
+        setError(err.message);
+        setData(null);
+      });
   }
 
   return (
@@ -64,6 +75,7 @@ const Forecast = () => {
         <button type='submit' className={classes.Button}>Get Forecast</button>
       </form>
       <div>
+        {error && error}
         {data && <Conditions data={data} unit={unit}/>}
       </div>
     </div>
