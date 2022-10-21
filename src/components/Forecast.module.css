@@ -4,7 +4,7 @@
   padding: 5px;
   border-radius: 3px;
   display: block;
-  margin: 5px auto;
+  margin: 1rem auto;
 }
 
 .TextInput:focus {
@@ -17,15 +17,17 @@
   font-size: small;
 }
 
+.Radio:hover {
+  cursor: pointer;
+}
+
 .Button {
   display: block;
-  margin: 10px auto;
+  margin: 1rem auto;
   padding: .5rem;
   font-size: 1em;
   background: darkcyan;
   border-radius: 5px;
   color: white;
   cursor: pointer;
-  margin: 5px auto;
-
 }

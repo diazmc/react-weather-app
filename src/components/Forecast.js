@@ -18,11 +18,10 @@ const Forecast = () => {
 
   const getForecast = (e) => {
     e.preventDefault();
-    
-    fetch(`https://weatherapi-com.p.rapsidapi.com/current.json?q=${city}`, options)
+
+    fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${city}`, options)
       .then(response => response.json())
       .then(weatherData => {
-        console.log(weatherData);
         setData(weatherData);
       })
       .catch(err => console.log(err.message));
