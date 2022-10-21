@@ -8,8 +8,6 @@ const Forecast = () => {
   const [city, setCity] = useState('');
   const [unit, setUnit] = useState('imperial');
 
-  const uriEncodedCity = encodeURIComponent(city);
-
   const options = {
     method: 'GET',
     headers: {
@@ -21,9 +19,12 @@ const Forecast = () => {
   const getForecast = (e) => {
     e.preventDefault();
     
-    fetch(`https://weatherapi-com.p.rapidapi.com/current.json?q=${city}`, options)
+    fetch(`https://weatherapi-com.p.rapsidapi.com/current.json?q=${city}`, options)
       .then(response => response.json())
-      .then(weatherData => console.log(weatherData))
+      .then(weatherData => {
+        console.log(weatherData);
+        setData(weatherData);
+      })
       .catch(err => console.log(err.message));
   }
 
@@ -64,8 +65,7 @@ const Forecast = () => {
         <button type='submit' className={classes.Button}>Get Forecast</button>
       </form>
       <div>
-        {/* {data && <Conditions data={data}/>}
-         */}
+        {data && <Conditions data={data} unit={unit}/>}
       </div>
     </div>
   )
