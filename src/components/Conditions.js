@@ -9,7 +9,7 @@ const Conditions = (props) => {
 
   return ( 
     <div className={classes.Card}>
-      <p><strong>{props.data.location.name}, {props.data.location.country}</strong></p>
+      <p className={classes.City}><strong>{props.data.location.name}, {props.data.location.country}</strong></p>
       <div>
         <img src={icon} alt='icon'/>
       </div>
